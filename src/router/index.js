@@ -5,13 +5,12 @@ import Singer from 'components/singer/singer'
 import Rank from 'components/rank/rank'
 import Search from 'components/search/search'
 
+import 'common/stylus/index.styl'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/'
-    },
     {
       path: '/recommend',
       component: Recommend
