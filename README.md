@@ -5,6 +5,7 @@
 ## Build Setup
 
 ``` bash
+# npm or cnpm
 # install dependencies
 npm install
 
