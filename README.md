@@ -2,6 +2,16 @@
 
 > 音乐播放器
 
+## 项目结构
+
+- api
+- 公共资源：src/common文件夹内，包含文字类型fonts、图片image、js、预编译stylus 等。
+- 组件库
+  - /src/base目录中的基础组件库，在正式项目或大型项目可以放到npm的一个模块，然后通过npm安装这个依赖；
+  - /src/components目录中的业务组件库。
+- router：路由
+- store：数据管理
+
 ## Build Setup
 
 ``` bash
