@@ -40,10 +40,7 @@ export default {
     _getRecommend () {
       getRecommend().then((res) => {
         if (res.code === ERR_OK) {
-          console.log('成功！！！')
           this.recommends = res.data.slider
-          console.log(this.recommends)
-          console.log(typeof (this.recommends))
         }
       })
     }
