@@ -25,7 +25,7 @@ export default {
       type: Boolean,
       default: true
     },
-    autoplay: {
+    autoPlay: {
       type: Boolean,
       default: true
     },
@@ -37,7 +37,12 @@ export default {
   mounted() {
     setTimeout(() => {
       this._setSliderWidth()
+      this._initDots()
       this._initSlider()
+
+      if (this.autoPlay) {
+        this._play()
+      }
     }, 20)
   },
   methods: {
@@ -58,6 +63,9 @@ export default {
       }
       this.$refs.sliderGroup.style.width = width + 'px'
     },
+    _initDots() {
+      this.dots = new Array(this.children.length)
+    },
     _initSlider() {
       this.slider = new BScroll(this.$refs.slider, {
         scrollX: true,
@@ -77,7 +85,21 @@ export default {
           pageIndex -= 1
         }
         this.currentPageIndex = pageIndex
+
+        if (this.autoPlay) {
+          clearTimeout(this.timer)
+          this._play()
+        }
       })
+    },
+    _play() {
+      let pageIndex = this.currentPageIndex + 1
+      if (this.loop) {
+        pageIndex += 1
+      }
+      this.timer = setTimeout(() => {
+        this.slider.goToPage(pageIndex, 0, 400)
+      }, this.interval)
     }
   }
 }
