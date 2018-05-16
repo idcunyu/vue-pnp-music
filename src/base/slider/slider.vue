@@ -43,7 +43,7 @@ export default {
       if (this.autoPlay) {
         this._play()
       }
-    }, 20)
+    }, 10) // 20ms是因为浏览器刷新是17ms，20ms是一个经验值
   },
   methods: {
     _setSliderWidth() {
@@ -63,9 +63,6 @@ export default {
       }
       this.$refs.sliderGroup.style.width = width + 'px'
     },
-    _initDots() {
-      this.dots = new Array(this.children.length)
-    },
     _initSlider() {
       this.slider = new BScroll(this.$refs.slider, {
         scrollX: true,
@@ -81,9 +78,6 @@ export default {
 
       this.slider.on('scrollEnd', () => {
         let pageIndex = this.slider.getCurrentPage().pageX
-        if (this.loop) {
-          pageIndex -= 1
-        }
         this.currentPageIndex = pageIndex
 
         if (this.autoPlay) {
@@ -92,13 +86,14 @@ export default {
         }
       })
     },
+    _initDots() {
+      this.dots = new Array(this.children.length)
+    },
     _play() {
-      let pageIndex = this.currentPageIndex + 1
-      if (this.loop) {
-        pageIndex += 1
-      }
+      clearTimeout(this.timer)
       this.timer = setTimeout(() => {
-        this.slider.goToPage(pageIndex, 0, 400)
+        // this.slider.goToPage(pageIndex, 0, 400) 如果写作本行，自动轮播无法循环
+        this.slider.next()
       }, this.interval)
     }
   }
