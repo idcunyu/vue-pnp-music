@@ -1,6 +1,6 @@
 # vue-pnp-music
 
-> Pineapple - PNP - 音乐播放器
+> Vue 开发 -- Pineapple - PNP - 音乐播放器
 
 ## 项目结构
 
